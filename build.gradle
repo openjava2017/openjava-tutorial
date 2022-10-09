@@ -15,6 +15,24 @@ repositories {
 
 dependencies {
     implementation 'org.mongodb:mongodb-driver-sync:4.7.1'
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'org.ow2.asm:asm-commons:9.2'
+}
+
+jar {
+    manifestContentCharset 'utf-8'
+    metadataCharset 'utf-8'
+    manifest {
+        attributes "Main-Class" : "org.openjava.asm.agent.test.MainAgentTest"
+        attributes "Can-Redefine-Classes" : true
+        attributes "Can-Retransform-Classes" : true
+        attributes "Premain-Class" : "org.openjava.asm.agent.PremainAgent"
+        attributes "Agent-Class" : "org.openjava.asm.agent.MainAgent"
+        attributes 'Class-Path': configurations.compileClasspath.files.collect {"$it.name"}.join(' ')
+    }
+    from { // 打包test类
+        sourceSets.test.output
+    }
 }
 
 test {
