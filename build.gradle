@@ -17,6 +17,11 @@ dependencies {
     implementation 'org.mongodb:mongodb-driver-sync:4.7.1'
     implementation 'org.ow2.asm:asm:9.2'
     implementation 'org.ow2.asm:asm-commons:9.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
+    // 时间类型的序列化、反序列化
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4'
+    // JDK8新增类型的序列化、反序列化: Optional OptionalInt Stream IntStream等
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.13.4'
 }
 
 jar {
