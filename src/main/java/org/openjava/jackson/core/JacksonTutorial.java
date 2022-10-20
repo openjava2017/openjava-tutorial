@@ -1,5 +1,6 @@
 package org.openjava.jackson.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -41,13 +42,18 @@ public class JacksonTutorial {
         var objectMapper = new ObjectMapper();
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         objectMapper.setTimeZone(TimeZone.getTimeZone(ZoneOffset.of("+8")));
-        // Json串的属性无JavaBean字段对应时，避免抛出异常
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+            // Json串的属性无JavaBean字段对应时，避免抛出异常
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         // JavaBean中primitive类型的字段无Json属性时，避免抛出异常
         objectMapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
         // Json串数字类型属性，赋值JavaBean中Enum字段时，避免抛出异常
         objectMapper.configure(DeserializationFeature.FAIL_ON_NUMBERS_FOR_ENUMS, false);
         objectMapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
+        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
         // JDK8时间类型模块
         var timeModule = new JavaTimeModule();
