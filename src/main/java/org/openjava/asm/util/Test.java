@@ -3,6 +3,7 @@ package org.openjava.asm.util;
 import org.objectweb.asm.signature.SignatureReader;
 import org.objectweb.asm.signature.SignatureVisitor;
 import org.objectweb.asm.signature.SignatureWriter;
+import sun.misc.Unsafe;
 
 public class Test {
     @SentinelMethod(threshold = 15000)

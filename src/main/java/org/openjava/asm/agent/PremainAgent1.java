@@ -16,7 +16,7 @@ import java.security.ProtectionDomain;
 
 public class PremainAgent1 {
     public static void premain(String args, Instrumentation inst) {
-        //java -javaagent:/Users/brenthuang/Work/projects/openjava-asm/build/libs/openjava-asm-1.0-SNAPSHOT.jar=aa -jar upay-service-1.0.0.jar
+        //java -Xbootclasspath/a:asm-9.4.jar:asm-commons-9.4.jar -javaagent:/Users/brenthuang/Work/projects/openjava-asm/build/libs/openjava-asm-1.0-SNAPSHOT.jar=aa -jar upay-service-1.0.0.jar
         System.out.println(String.format("premain args: %s, retransformClassesSupported: %s, redefineClassesSupported: %s",
             args, inst.isRetransformClassesSupported(), inst.isRedefineClassesSupported()));
         inst.addTransformer(new ClassFileTransformer() {
